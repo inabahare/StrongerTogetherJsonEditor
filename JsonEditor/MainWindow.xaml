@@ -12,7 +12,7 @@
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel>
+        <StackPanel Grid.Column="0">
             <ListBox x:Name="Sections">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -22,8 +22,19 @@
             </ListBox>
             <Button>+</Button>
         </StackPanel>
-        <StackPanel>
+        
+        <StackPanel Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
+                <Button Margin="10,0,10,0" Grid.Column="0">Good</Button>
+                <Button Margin="10,0,10,0" Grid.Column="1">Neutral</Button>
+                <Button Margin="10,0,10,0" Grid.Column="2">Bad</Button>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>

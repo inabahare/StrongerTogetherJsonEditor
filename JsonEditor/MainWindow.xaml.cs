@@ -38,6 +38,14 @@ namespace JsonEditor
             evaluations = JsonConvert.DeserializeObject<Evaluations>(text);
 
             Sections.ItemsSource = evaluations.Responses;
+            Sections.SelectionChanged += ChangeDialog;
+        }
+
+        void ChangeDialog(object sender, SelectionChangedEventArgs e)
+        {
+            var listBoxSender = sender as ListBox;
+            var response = listBoxSender.SelectedItem as Response;
+            Console.WriteLine(response);
         }
     }
 }
