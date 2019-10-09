@@ -13,17 +13,18 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <ListBox x:Name="Sections">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+            <ListBox x:Name="Sections" 
+                     SelectedItem="{Binding selectedResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </ListBox>
             <Button>+</Button>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1">
+            <TextBox x:Name="Title" 
+                     Text="{Binding Path=selectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     TextChanged="Title_TextChanged"
+FontSize="16" FontWeight="Bold"></TextBox>
+            <TextBox x:Name="Theme">Theme</TextBox>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,12 @@ namespace JsonEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        Evaluations evaluations;
+        ObservableCollection<Response> Responses { get; set; }
+
+        Response selectedResponse { get; set; }
 
         public MainWindow()
         {
-            InitializeComponent();
             var dlg = new OpenFileDialog
             {
                 DefaultExt = ".json"
@@ -35,17 +37,23 @@ namespace JsonEditor
 
             dlg.ShowDialog();
             var text = File.ReadAllText(dlg.FileName);
-            evaluations = JsonConvert.DeserializeObject<Evaluations>(text);
+            var evaluations = JsonConvert.DeserializeObject<Evaluations>(text);
 
-            Sections.ItemsSource = evaluations.Responses;
-            Sections.SelectionChanged += ChangeDialog;
+            Responses = new ObservableCollection<Response>(evaluations.Responses);
+
+            InitializeComponent();
+            DataContext = this;
+            Sections.ItemsSource = Responses;
+            
+            // Sections.SelectionChanged += ChangeDialog;
+            selectedResponse = evaluations.Responses.First();
         }
 
         void ChangeDialog(object sender, SelectionChangedEventArgs e)
         {
             var listBoxSender = sender as ListBox;
-            var response = listBoxSender.SelectedItem as Response;
-            Console.WriteLine(response);
+            //var response = listBoxSender.SelectedItem as Response;
+            //selectedResponse = response;
         }
     }
 }
