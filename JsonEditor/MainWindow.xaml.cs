@@ -10,13 +10,6 @@ using JsonEditor.Helpers;
 
 namespace JsonEditor
 {
-    public enum ScenarioChoice
-    {
-        Good = 2,
-        Neutral = 1,
-        Bad = 0
-    }
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -78,15 +71,14 @@ namespace JsonEditor
             }
         }
 
-
         public MainWindow()
         {
+            DataContext = this;
+            InitializeComponent();
 
             var evaluations = Json.LoadFromFile();
             Responses = new ObservableCollection<Response>(evaluations.Responses);
 
-            DataContext = this;
-            InitializeComponent();
             Sections.ItemsSource = Responses;
             
             // Sections.SelectionChanged += ChangeDialog;

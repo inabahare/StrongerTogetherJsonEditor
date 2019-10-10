@@ -25,6 +25,13 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
+            <ComboBox x:Name="ToAdd">
+                <ComboBoxItem Name="Morality">Morailty</ComboBoxItem>
+                <ComboBoxItem Name="SelfControl">Self Control</ComboBoxItem>
+                <ComboBoxItem Name="CriticalThinking">Critical Thinking</ComboBoxItem>
+                <ComboBoxItem Name="InclusionAndDiversity">Inclusion and Diversity</ComboBoxItem>
+            </ComboBox>
             <Button>+</Button>
         </StackPanel>
 
@@ -39,14 +46,23 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
+                <StackPanel Grid.Column="0">
+                    <Label>Good</Label>
+                    <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
                          Text="{Binding Path=GoodMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
 
-                <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
-                         Text="{Binding Path=NeutralMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Grid.Column="1">
+                    <Label>Neutral</Label>
+                    <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
+                             Text="{Binding Path=NeutralMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
 
-                <TextBox Grid.Column="2" Height="100px" TextWrapping="Wrap"
-                         Text="{Binding Path=BadMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Grid.Column="2">
+                    <Label>Bad</Label>
+                    <TextBox Height="100px" TextWrapping="Wrap"
+                             Text="{Binding Path=BadMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
             </Grid>
         </StackPanel>
     </Grid>
