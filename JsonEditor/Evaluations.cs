@@ -39,12 +39,7 @@ namespace JsonEditor
             }
         }
 
-        public string AsString
-        {
-            get => $"{Title} - {Theme}";
-        }
-
-        public List<Responses> Responses { get; set; }
+        public List<MoralityResponse> Responses { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -55,7 +50,7 @@ namespace JsonEditor
         }
     }
 
-    public class Responses : INotifyPropertyChanged
+    public class MoralityResponse : INotifyPropertyChanged
     {
         private string _name;
         private string _text;

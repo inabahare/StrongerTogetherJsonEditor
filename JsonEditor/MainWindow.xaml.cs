@@ -1,24 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using JsonEditor.Annotations;
+using JsonEditor.Helpers;
 
 namespace JsonEditor
 {
@@ -37,7 +25,7 @@ namespace JsonEditor
         ObservableCollection<Response> Responses { get; set; }
 
         private Response _selectedResponse;
-        private Responses _selectedMorality;
+        private MoralityResponse _selectedMorality;
 
 
         public Response SelectedResponse
@@ -52,7 +40,7 @@ namespace JsonEditor
                 OnPropertyChanged(nameof(SelectedResponse));
             }
         }
-        public Responses SelectedMorality
+        public MoralityResponse SelectedMorality
         {
             get => _selectedMorality;
             set
@@ -68,15 +56,8 @@ namespace JsonEditor
 
         public MainWindow()
         {
-            var dlg = new OpenFileDialog
-            {
-                DefaultExt = ".json"
-            };
 
-            dlg.ShowDialog();
-            var text = File.ReadAllText(dlg.FileName);
-            var evaluations = JsonConvert.DeserializeObject<Evaluations>(text);
-
+            var evaluations = Json.LoadFromFile();
             Responses = new ObservableCollection<Response>(evaluations.Responses);
 
             DataContext = this;
