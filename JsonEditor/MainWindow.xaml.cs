@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -88,9 +89,39 @@ namespace JsonEditor
 
         void ChangeMoralityOptions()
         {
-            GoodMorality = SelectedResponse.Responses.Find(r => r.Name == "Good");
+            GoodMorality    = SelectedResponse.Responses.Find(r => r.Name == "Good");
             NeutralMorality = SelectedResponse.Responses.Find(r => r.Name == "Neutral");
-            BadMorality = SelectedResponse.Responses.Find(r => r.Name == "Bad");
+            BadMorality     = SelectedResponse.Responses.Find(r => r.Name == "Bad");
+        }
+
+        void AddNewMorality(object sender, EventArgs e)
+        {
+            var moralityToAdd = ((ComboBoxItem)ToAdd.SelectedItem).Content as string;
+
+            if (moralityToAdd == null)
+                return;
+
+            var previousMoralityNumber =
+                Responses.Where(response => response.Title.Contains(moralityToAdd))
+                         .Select(response => response.Title)
+                         .Last()
+                         .Remove(0, moralityToAdd.Length);
+
+            var newMoralityNumber = int.Parse(previousMoralityNumber) + 1;
+
+            var newResponse = new Response
+            {
+                Title = $"{moralityToAdd}_{newMoralityNumber}",
+                Theme = "New Theme",
+                Responses = new List<MoralityResponse> {
+                    new MoralityResponse {Name = "Good"},
+                    new MoralityResponse {Name = "Neutral"},
+                    new MoralityResponse {Name = "Bad"},
+                }
+            };
+
+            SelectedResponse = newResponse;
+            Responses.Add(newResponse);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

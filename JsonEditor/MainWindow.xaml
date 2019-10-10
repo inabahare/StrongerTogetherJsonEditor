@@ -32,7 +32,8 @@
                 <ComboBoxItem Name="CriticalThinking">Critical Thinking</ComboBoxItem>
                 <ComboBoxItem Name="InclusionAndDiversity">Inclusion and Diversity</ComboBoxItem>
             </ComboBox>
-            <Button>+</Button>
+
+            <Button Click="AddNewMorality">+</Button>
         </StackPanel>
 
         <StackPanel Grid.Column="1">
