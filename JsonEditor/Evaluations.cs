@@ -14,55 +14,18 @@ namespace JsonEditor
         public List<Response> Responses { get; set; }
     }
 
-    public class Response : INotifyPropertyChanged
+    public class Response
     {
-        private string _title;
-        private string _theme;
+        public string Title { get; set; }
 
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                _title = value;
-                OnPropertyChanged(nameof(Title));
-            }
-        }
-
-        public string Theme
-        {
-            get => _theme;
-            set
-            {
-                _theme = value;
-                OnPropertyChanged(nameof(Theme));
-            }
-        }
+        public string Theme { get; set; }
 
         public List<MoralityResponse> Responses { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 
-    public class MoralityResponse : INotifyPropertyChanged
+    public class MoralityResponse
     {
-        private string _name;
-        private string _text;
-
         public string Name { get; set; }
         public string Text { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
