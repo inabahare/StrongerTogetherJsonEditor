@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JsonEditor"
+        xmlns:local="clr-namespace:JsonEditor" 
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1000">
     <Grid>
@@ -14,15 +14,14 @@
 
         <StackPanel Grid.Column="0">
             <ListBox x:Name="Sections" 
-                     SelectedItem="{Binding selectedResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                     SelectedItem="{Binding SelectedResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </ListBox>
             <Button>+</Button>
         </StackPanel>
 
         <StackPanel Grid.Column="1">
             <TextBox x:Name="Title" 
-                     Text="{Binding Path=selectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextChanged="Title_TextChanged"
+                     Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 FontSize="16" FontWeight="Bold"></TextBox>
             <TextBox x:Name="Theme">Theme</TextBox>
             <Grid>

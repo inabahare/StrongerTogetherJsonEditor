@@ -16,17 +16,32 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using JsonEditor.Annotations;
 
 namespace JsonEditor
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : INotifyPropertyChanged
     {
         ObservableCollection<Response> Responses { get; set; }
 
-        Response selectedResponse { get; set; }
+        private Response _selectedResponse;
+
+        public Response SelectedResponse
+        {
+            get => _selectedResponse;
+            set
+            {
+                if (_selectedResponse == value)
+                    return;
+                _selectedResponse = value;
+                OnPropertyChanged(nameof(SelectedResponse));
+            }
+    }
 
         public MainWindow()
         {
@@ -41,19 +56,21 @@ namespace JsonEditor
 
             Responses = new ObservableCollection<Response>(evaluations.Responses);
 
-            InitializeComponent();
             DataContext = this;
+            InitializeComponent();
             Sections.ItemsSource = Responses;
             
             // Sections.SelectionChanged += ChangeDialog;
-            selectedResponse = evaluations.Responses.First();
+            SelectedResponse = evaluations.Responses.First();
         }
 
-        void ChangeDialog(object sender, SelectionChangedEventArgs e)
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var listBoxSender = sender as ListBox;
-            //var response = listBoxSender.SelectedItem as Response;
-            //selectedResponse = response;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
