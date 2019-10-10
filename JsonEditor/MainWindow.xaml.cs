@@ -25,8 +25,10 @@ namespace JsonEditor
         ObservableCollection<Response> Responses { get; set; }
 
         private Response _selectedResponse;
-        private MoralityResponse _selectedMorality;
 
+        private MoralityResponse _goodMorality;
+        private MoralityResponse _neutralMorality;
+        private MoralityResponse _badMorality;
 
         public Response SelectedResponse
         {
@@ -36,22 +38,45 @@ namespace JsonEditor
                 if (_selectedResponse == value)
                     return;
                 _selectedResponse = value;
+
+                ChangeMoralityOptions();
                 Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedResponse));
             }
         }
-        public MoralityResponse SelectedMorality
+        public MoralityResponse GoodMorality
         {
-            get => _selectedMorality;
+            get => _goodMorality;
             set
             {
-                if (_selectedMorality == value)
+                if (_goodMorality == value)
                     return;
-                _selectedMorality = value;
-                OnPropertyChanged(nameof(SelectedMorality));
+                _goodMorality = value;
+                OnPropertyChanged(nameof(GoodMorality));
             }
         }
-
+        public MoralityResponse NeutralMorality
+        {
+            get => _neutralMorality;
+            set
+            {
+                if (_neutralMorality == value)
+                    return;
+                _neutralMorality = value;
+                OnPropertyChanged(nameof(NeutralMorality));
+            }
+        }
+        public MoralityResponse BadMorality
+        {
+            get => _badMorality;
+            set
+            {
+                if (_badMorality == value)
+                    return;
+                _badMorality = value;
+                OnPropertyChanged(nameof(BadMorality));
+            }
+        }
 
 
         public MainWindow()
@@ -66,14 +91,14 @@ namespace JsonEditor
             
             // Sections.SelectionChanged += ChangeDialog;
             SelectedResponse = evaluations.Responses.First();
+            ChangeMoralityOptions();
         }
 
-        void ChangeMorality(object sender, RoutedEventArgs e)
+        void ChangeMoralityOptions()
         {
-            var button = sender as Button;
-            var morality = button.Content as string;
-            SelectedMorality = SelectedResponse.Responses.Find(m => m.Name == morality);
-            Console.WriteLine(SelectedMorality);
+            GoodMorality = SelectedResponse.Responses.Find(r => r.Name == "Good");
+            NeutralMorality = SelectedResponse.Responses.Find(r => r.Name == "Neutral");
+            BadMorality = SelectedResponse.Responses.Find(r => r.Name == "Bad");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

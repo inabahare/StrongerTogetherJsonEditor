@@ -33,19 +33,21 @@
                      Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
                 <TextBox x:Name="Theme" 
                      Text="{Binding Path=SelectedResponse.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Grid>
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
+                         Text="{Binding Path=GoodMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <Button Margin="10,0,10,0" Click="ChangeMorality" Grid.Column="0">Good</Button>
-                <Button Margin="10,0,10,0" Click="ChangeMorality" Grid.Column="1">Neutral</Button>
-                <Button Margin="10,0,10,0" Click="ChangeMorality" Grid.Column="2">Bad</Button>
+                <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
+                         Text="{Binding Path=NeutralMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBox Grid.Column="2" Height="100px" TextWrapping="Wrap"
+                         Text="{Binding Path=BadMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            <TextBox Height="100px"
-                       Text="{Binding Path=SelectedMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
     </Grid>
 </Window>
