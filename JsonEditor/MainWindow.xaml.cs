@@ -22,6 +22,13 @@ using JsonEditor.Annotations;
 
 namespace JsonEditor
 {
+    public enum ScenarioChoice
+    {
+        Good = 2,
+        Neutral = 1,
+        Bad = 0
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -30,6 +37,8 @@ namespace JsonEditor
         ObservableCollection<Response> Responses { get; set; }
 
         private Response _selectedResponse;
+        private Responses _selectedMorality;
+
 
         public Response SelectedResponse
         {
@@ -39,9 +48,23 @@ namespace JsonEditor
                 if (_selectedResponse == value)
                     return;
                 _selectedResponse = value;
+                Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedResponse));
             }
-    }
+        }
+        public Responses SelectedMorality
+        {
+            get => _selectedMorality;
+            set
+            {
+                if (_selectedMorality == value)
+                    return;
+                _selectedMorality = value;
+                OnPropertyChanged(nameof(SelectedMorality));
+            }
+        }
+
+
 
         public MainWindow()
         {
@@ -64,6 +87,13 @@ namespace JsonEditor
             SelectedResponse = evaluations.Responses.First();
         }
 
+        void ChangeMorality(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var morality = button.Content as string;
+            SelectedMorality = SelectedResponse.Responses.Find(m => m.Name == morality);
+            Console.WriteLine(SelectedMorality);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

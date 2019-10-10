@@ -15,26 +15,37 @@
         <StackPanel Grid.Column="0">
             <ListBox x:Name="Sections" 
                      SelectedItem="{Binding SelectedResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock Text="{Binding Path=Title}"/>
+                            <TextBlock Text=" - "/>
+                            <TextBlock Text="{Binding Path=Theme}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
             <Button>+</Button>
         </StackPanel>
 
         <StackPanel Grid.Column="1">
             <TextBox x:Name="Title" 
-                     Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-FontSize="16" FontWeight="Bold"></TextBox>
-            <TextBox x:Name="Theme">Theme</TextBox>
-            <Grid>
+                     Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
+                <TextBox x:Name="Theme" 
+                     Text="{Binding Path=SelectedResponse.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="10,0,10,0" Grid.Column="0">Good</Button>
-                <Button Margin="10,0,10,0" Grid.Column="1">Neutral</Button>
-                <Button Margin="10,0,10,0" Grid.Column="2">Bad</Button>
+                <Button Margin="10,0,10,0" Click="ChangeMorality" Grid.Column="0">Good</Button>
+                <Button Margin="10,0,10,0" Click="ChangeMorality" Grid.Column="1">Neutral</Button>
+                <Button Margin="10,0,10,0" Click="ChangeMorality" Grid.Column="2">Bad</Button>
             </Grid>
+            <TextBox Height="100px"
+                       Text="{Binding Path=SelectedMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
     </Grid>
 </Window>

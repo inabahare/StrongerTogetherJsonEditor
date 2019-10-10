@@ -39,12 +39,12 @@ namespace JsonEditor
             }
         }
 
-        public List<Responses> Responses { get; set; }
-
-        public override string ToString()
+        public string AsString
         {
-            return $"{Title} - {Theme}";
+            get => $"{Title} - {Theme}";
         }
+
+        public List<Responses> Responses { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
