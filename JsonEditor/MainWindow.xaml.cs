@@ -89,6 +89,9 @@ namespace JsonEditor
 
         void ChangeMoralityOptions()
         {
+            if (SelectedResponse == null)
+                return; // I have no idea why I need this
+
             GoodMorality    = SelectedResponse.Responses.Find(r => r.Name == "Good");
             NeutralMorality = SelectedResponse.Responses.Find(r => r.Name == "Neutral");
             BadMorality     = SelectedResponse.Responses.Find(r => r.Name == "Bad");
@@ -140,7 +143,10 @@ namespace JsonEditor
             var ordered = (from r in Responses
                            orderby r.Title
                            select r).ToList();
-            Responses = new ObservableCollection<Response>(ordered);
+
+            Responses.Clear();
+            foreach (var r in ordered)
+                Responses.Add(r);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

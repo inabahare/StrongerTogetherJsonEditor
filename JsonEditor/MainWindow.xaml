@@ -13,7 +13,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <ListBox x:Name="Sections" 
+            <ListBox x:Name="Sections"
+                     Height="300"
                      SelectedItem="{Binding SelectedResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -26,7 +27,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <ComboBox x:Name="ToAdd">
+            <ComboBox x:Name="ToAdd" SelectedIndex="0">
                 <ComboBoxItem Name="Morality">Morailty</ComboBoxItem>
                 <ComboBoxItem Name="SelfControl">Self Control</ComboBoxItem>
                 <ComboBoxItem Name="CriticalThinking">Critical Thinking</ComboBoxItem>
