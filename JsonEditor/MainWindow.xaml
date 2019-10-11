@@ -37,11 +37,21 @@
             <Button Click="AddNewMorality">+</Button>
         </StackPanel>
 
-        <StackPanel Grid.Column="1">
-            <TextBox x:Name="Title" 
-                     Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
-                <TextBox x:Name="Theme" 
-                     Text="{Binding Path=SelectedResponse.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel Grid.Column="1" Margin="0,0,0,210">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontWeight="Bold" Width="52">Title:</TextBlock>
+                <TextBox x:Name="Title" 
+                         Width="200"
+                         IsEnabled="False"
+                         Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="14" FontWeight="Bold" Width="52">Theme:</TextBlock>
+                <TextBox x:Name="Theme"
+                         Width="200"
+                        Text="{Binding Path=SelectedResponse.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -49,23 +59,27 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <Label>Good</Label>
+                    <Label FontSize="14" FontWeight="Bold">Good</Label>
                     <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
                          Text="{Binding Path=GoodMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <Label>Neutral</Label>
+                    <Label FontSize="14" FontWeight="Bold">Neutral</Label>
                     <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
                              Text="{Binding Path=NeutralMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
-                    <Label>Bad</Label>
+                    <Label FontSize="14" FontWeight="Bold">Bad</Label>
                     <TextBox Height="100px" TextWrapping="Wrap"
                              Text="{Binding Path=BadMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
+
         </StackPanel>
+        
+        <!-- TODO: A better button position -->
+        <Button Grid.Column="1" Margin="634,348,34,33">Save</Button>
     </Grid>
 </Window>
