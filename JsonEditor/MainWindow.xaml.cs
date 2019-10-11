@@ -89,6 +89,16 @@ namespace JsonEditor
                 Responses.Add(r);
         }
 
+        void Save(object sender, EventArgs e)
+        {
+            var newEvaluation = new Evaluations
+            {
+                Responses = Responses.ToList()
+            };
+
+            Json.SaveToFile(newEvaluation);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

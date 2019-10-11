@@ -80,6 +80,8 @@
         </StackPanel>
         
         <!-- TODO: A better button position -->
-        <Button Grid.Column="1" Margin="634,348,34,33">Save</Button>
+        <Button Grid.Column="1"
+                Click="Save"
+                Margin="634,348,34,33">Save</Button>
     </Grid>
 </Window>
