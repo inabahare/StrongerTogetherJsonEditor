@@ -12,28 +12,39 @@ namespace JsonEditor.Helpers
 {
     static class Json
     {
-        static string Path { get; set; }
+        static string JsonPath { get; set; }
+        const string JsonPathInUnityProject = "Assets/Resources/EvaluationResponses.json";
 
         public static Evaluations LoadFromFile()
         {
             var dlg = new OpenFileDialog
             {
-                DefaultExt = ".json"
+                DefaultExt = ".json",
+                Filter = "Stronger Together Project|*.sln"
             };
 
             dlg.ShowDialog();
-            Path = dlg.FileName;
+            JsonPath = GetPathOfEvaluationJson(dlg.FileName, dlg.SafeFileName);
 
-            var text = File.ReadAllText(dlg.FileName);
+            var text = File.ReadAllText(JsonPath);
             var evaluations = JsonConvert.DeserializeObject<Evaluations>(text);
             return evaluations;
+        }
+
+        static string GetPathOfEvaluationJson(string fullPath, string slnName)
+        {
+            var pathWithoutSln = fullPath.Replace(slnName, "");
+            var pathToJson = Path.Combine(pathWithoutSln, JsonPathInUnityProject);
+            return pathToJson;
         }
 
         public static void SaveToFile(Evaluations evaluations)
         {
             var text = JsonConvert.SerializeObject(evaluations, Formatting.Indented);
-            File.Copy(Path, $"{Path}.backup.{DateTime.Now}");
-            File.WriteAllText($"{Path}.b", text);
+            
+            var newPath = $"{JsonPath}.backup.{DateTime.Now.ToString("yyyyMMddHHmm")}";
+            File.Copy(JsonPath, newPath);
+            File.WriteAllText(JsonPath, text);
             MessageBox.Show("File saved");
         }
     }
