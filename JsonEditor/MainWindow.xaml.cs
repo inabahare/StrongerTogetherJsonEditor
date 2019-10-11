@@ -96,22 +96,32 @@ namespace JsonEditor
 
         void AddNewMorality(object sender, EventArgs e)
         {
-            var moralityToAdd = ((ComboBoxItem)ToAdd.SelectedItem).Content as string;
+            var moralityToAdd = ((ComboBoxItem)ToAdd.SelectedItem).Name as string;
 
             if (moralityToAdd == null)
                 return;
 
-            var previousMoralityNumber =
-                Responses.Where(response => response.Title.Contains(moralityToAdd))
-                         .Select(response => response.Title)
-                         .Last()
-                         .Remove(0, moralityToAdd.Length);
+            int newMoralityNumber = 1;
 
-            var newMoralityNumber = int.Parse(previousMoralityNumber) + 1;
+            var previousChoice =
+                Responses.Where(response => response.Title.Contains(moralityToAdd));
+            
+
+            // If there already are choices
+            if (previousChoice.Count() != 0)
+            {
+                var previousMoralityNumber =
+                    previousChoice.Select(response => response.Title)
+                                  .Last()
+                                  .Remove(0, moralityToAdd.Length + 1); // + 1 to remove the underscore as well
+
+                newMoralityNumber = int.Parse(previousMoralityNumber) + 1;
+            }
+
 
             var newResponse = new Response
             {
-                Title = $"{moralityToAdd}_{newMoralityNumber}",
+                Title = $"{moralityToAdd}_{newMoralityNumber.ToString("D2")}",
                 Theme = "New Theme",
                 Responses = new List<MoralityResponse> {
                     new MoralityResponse {Name = "Good"},
@@ -122,6 +132,15 @@ namespace JsonEditor
 
             SelectedResponse = newResponse;
             Responses.Add(newResponse);
+            SortResponses();
+        }
+
+        void SortResponses()
+        {
+            var ordered = (from r in Responses
+                           orderby r.Title
+                           select r).ToList();
+            Responses = new ObservableCollection<Response>(ordered);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
