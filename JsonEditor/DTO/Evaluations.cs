@@ -33,7 +33,6 @@ namespace JsonEditor
     public class Response
     {
         public string Title { get; set; }
-        public string Theme { get; set; }
         public ResponseType Responses { get; set; }
     }
 

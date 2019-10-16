@@ -67,7 +67,6 @@ namespace JsonEditor
             var newResponse = new Response
             {
                 Title = $"{moralityToAdd}_{newMoralityNumber:D2}",
-                Theme = "New Theme",
                 Responses = new ResponseType
                 {
                     Good = "Insert good text here",
