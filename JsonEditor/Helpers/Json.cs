@@ -13,9 +13,9 @@ namespace JsonEditor.Helpers
     static class Json
     {
         static string JsonPath { get; set; }
-        const string JsonPathInUnityProject = "Assets/Resources/EvaluationResponses.json";
+        const string JsonPathInUnityProject = "Assets/Resources/Languages/English.json"; // TODO: Make availible for other languages 
 
-        public static Evaluations LoadFromFile()
+        public static DisplayText LoadFromFile()
         {
             var dlg = new OpenFileDialog
             {
@@ -27,7 +27,7 @@ namespace JsonEditor.Helpers
             JsonPath = GetPathOfEvaluationJson(dlg.FileName, dlg.SafeFileName);
 
             var text = File.ReadAllText(JsonPath);
-            var evaluations = JsonConvert.DeserializeObject<Evaluations>(text);
+            var evaluations = JsonConvert.DeserializeObject<DisplayText>(text);
             return evaluations;
         }
 
@@ -38,7 +38,7 @@ namespace JsonEditor.Helpers
             return pathToJson;
         }
 
-        public static void SaveToFile(Evaluations evaluations)
+        public static void SaveToFile(DisplayText evaluations)
         {
             var text = JsonConvert.SerializeObject(evaluations, Formatting.Indented);
             

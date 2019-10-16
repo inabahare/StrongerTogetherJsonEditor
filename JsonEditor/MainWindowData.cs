@@ -1,17 +1,20 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using JsonEditor.Annotations;
 
 namespace JsonEditor
 {
     public partial class MainWindow : INotifyPropertyChanged
     {
+        ObservableCollection<Scenario> Scenarios { get; set; }
         ObservableCollection<Response> Responses { get; set; }
 
-        private Response _selectedResponse;
+        Response _selectedResponse;
+        Scenario _selectedScene;
 
-        private MoralityResponse _goodMorality;
-        private MoralityResponse _neutralMorality;
-        private MoralityResponse _badMorality;
+        ResponseType _responseTypes;
 
         public Response SelectedResponse
         {
@@ -27,38 +30,73 @@ namespace JsonEditor
                 OnPropertyChanged(nameof(SelectedResponse));
             }
         }
-        public MoralityResponse GoodMorality
+
+        public Scenario SelectedScene
         {
-            get => _goodMorality;
+            get => _selectedScene;
             set
             {
-                if (_goodMorality == value)
+                if (_selectedScene == value)
                     return;
-                _goodMorality = value;
-                OnPropertyChanged(nameof(GoodMorality));
+
+                _selectedScene = value;
+
+                SelectedResponse = Responses.First(response => response.Title.ToLower() == value.Name.ToLower());
+
+                ChangeMoralityOptions();
+                Sections.UpdateLayout();
+                OnPropertyChanged(nameof(SelectedScene));
             }
         }
-        public MoralityResponse NeutralMorality
+
+        public ResponseType ResponseTypes
         {
-            get => _neutralMorality;
+            get => _responseTypes;
             set
             {
-                if (_neutralMorality == value)
+                if (_responseTypes == value)
                     return;
-                _neutralMorality = value;
-                OnPropertyChanged(nameof(NeutralMorality));
+                _responseTypes = value;
+                OnPropertyChanged(nameof(ResponseTypes));
             }
         }
-        public MoralityResponse BadMorality
+
+        public string GoodOption
         {
-            get => _badMorality;
+            get => _selectedResponse?.Responses?.Good;
             set
             {
-                if (_badMorality == value)
-                    return;
-                _badMorality = value;
-                OnPropertyChanged(nameof(BadMorality));
+                _selectedResponse.Responses.Good = value;
+                OnPropertyChanged(nameof(GoodOption));
             }
+        }
+
+        public string NeutralOption
+        {
+            get => _selectedResponse?.Responses?.Neutral;
+            set
+            {
+                _selectedResponse.Responses.Neutral= value;
+                OnPropertyChanged(nameof(NeutralOption));
+            }
+        }
+
+        public string BadOption
+        {
+            get => _selectedResponse?.Responses?.Bad;
+            set
+            {
+                _selectedResponse.Responses.Bad = value;
+                OnPropertyChanged(nameof(BadOption));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

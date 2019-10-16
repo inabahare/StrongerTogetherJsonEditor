@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using JsonEditor.Annotations;
 using JsonEditor.Helpers;
 
 namespace JsonEditor
 {
-    public partial class MainWindow : INotifyPropertyChanged
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -19,11 +16,14 @@ namespace JsonEditor
 
             var evaluations = Json.LoadFromFile();
             Responses = new ObservableCollection<Response>(evaluations.Responses);
+            Scenarios = new ObservableCollection<Scenario>(evaluations.Scenes);
 
-            Sections.ItemsSource = Responses;
             
             // Sections.SelectionChanged += ChangeDialog;
-            SelectedResponse = evaluations.Responses.First();
+            SelectedScene = evaluations.Scenes.First();
+            SelectedResponse = evaluations.Responses.First(response => response.Title.ToLower() == SelectedScene.Name.ToLower());
+
+            Sections.ItemsSource = Scenarios;
             ChangeMoralityOptions();
         }
 
@@ -32,9 +32,9 @@ namespace JsonEditor
             if (SelectedResponse == null)
                 return; // I have no idea why I need this
 
-            GoodMorality    = SelectedResponse.Responses.Find(r => r.Name == "Good");
-            NeutralMorality = SelectedResponse.Responses.Find(r => r.Name == "Neutral");
-            BadMorality     = SelectedResponse.Responses.Find(r => r.Name == "Bad");
+            GoodOption = SelectedResponse.Responses.Good;
+            NeutralOption = SelectedResponse.Responses.Neutral;
+            BadOption = SelectedResponse.Responses.Bad;
         }
 
         void AddNewMorality(object sender, EventArgs e)
@@ -47,7 +47,9 @@ namespace JsonEditor
             int newMoralityNumber = 1;
 
             var previousChoice =
-                Responses.Where(response => response.Title.Contains(moralityToAdd));
+                Responses
+                    .Where(response => response.Title.Contains(moralityToAdd))
+                    .ToList();
             
 
             // If there already are choices
@@ -64,17 +66,19 @@ namespace JsonEditor
 
             var newResponse = new Response
             {
-                Title = $"{moralityToAdd}_{newMoralityNumber.ToString("D2")}",
+                Title = $"{moralityToAdd}_{newMoralityNumber:D2}",
                 Theme = "New Theme",
-                Responses = new List<MoralityResponse> {
-                    new MoralityResponse {Name = "Good"},
-                    new MoralityResponse {Name = "Neutral"},
-                    new MoralityResponse {Name = "Bad"},
+                Responses = new ResponseType
+                {
+                    Good = "Insert good text here",
+                    Neutral = "Insert neutral text here",
+                    Bad = "Insert bad text here"
                 }
             };
 
             SelectedResponse = newResponse;
             Responses.Add(newResponse);
+            ChangeMoralityOptions();
             SortResponses();
         }
 
@@ -91,20 +95,13 @@ namespace JsonEditor
 
         void Save(object sender, EventArgs e)
         {
-            var newEvaluation = new Evaluations
+            var newEvaluation = new DisplayText
             {
+                Scenes = Scenarios.ToList(),
                 Responses = Responses.ToList()
             };
 
             Json.SaveToFile(newEvaluation);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

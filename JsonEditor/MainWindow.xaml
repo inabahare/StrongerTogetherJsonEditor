@@ -15,11 +15,11 @@
         <StackPanel Grid.Column="0">
             <ListBox x:Name="Sections"
                      Height="300"
-                     SelectedItem="{Binding SelectedResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                     SelectedItem="{Binding SelectedScene, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
-                            <TextBlock Text="{Binding Path=Title}"/>
+                            <TextBlock Text="{Binding Path=Name}"/>
                             <TextBlock Text=" - "/>
                             <TextBlock Text="{Binding Path=Theme}"/>
                         </TextBlock>
@@ -43,14 +43,14 @@
                 <TextBox x:Name="Title" 
                          Width="200"
                          IsEnabled="False"
-                         Text="{Binding Path=SelectedResponse.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
+                         Text="{Binding Path=SelectedScene.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="14" FontWeight="Bold" Width="52">Theme:</TextBlock>
                 <TextBox x:Name="Theme"
                          Width="200"
-                        Text="{Binding Path=SelectedResponse.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        Text="{Binding Path=SelectedScene.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -61,19 +61,19 @@
                 <StackPanel Grid.Column="0">
                     <Label FontSize="14" FontWeight="Bold">Good</Label>
                     <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
-                         Text="{Binding Path=GoodMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Path=GoodOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
                     <Label FontSize="14" FontWeight="Bold">Neutral</Label>
                     <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
-                             Text="{Binding Path=NeutralMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=NeutralOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
                     <Label FontSize="14" FontWeight="Bold">Bad</Label>
                     <TextBox Height="100px" TextWrapping="Wrap"
-                             Text="{Binding Path=BadMorality.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=BadOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
 
