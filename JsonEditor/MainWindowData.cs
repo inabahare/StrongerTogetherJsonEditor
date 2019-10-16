@@ -41,7 +41,7 @@ namespace JsonEditor
 
                 _selectedScene = value;
 
-                SelectedResponse = Responses.First(response => response.Title.ToLower() == value.Name.ToLower());
+                SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
                 ChangeMoralityOptions();
                 Sections.UpdateLayout();

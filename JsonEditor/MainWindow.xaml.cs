@@ -44,11 +44,11 @@ namespace JsonEditor
             if (moralityToAdd == null)
                 return;
 
-            int newMoralityNumber = 1;
+            int newMoralityNumber = 1; // Set it to one in case there aren't any
 
             var previousChoice =
                 Responses
-                    .Where(response => response.Title.Contains(moralityToAdd))
+                    .Where(r => r.Title.Contains(moralityToAdd))
                     .ToList();
             
 
@@ -56,18 +56,19 @@ namespace JsonEditor
             if (previousChoice.Count() != 0)
             {
                 var previousMoralityNumber =
-                    previousChoice.Select(response => response.Title)
+                    previousChoice.Select(r => r.Title)
                                   .Last()
                                   .Remove(0, moralityToAdd.Length + 1); // + 1 to remove the underscore as well
 
                 newMoralityNumber = int.Parse(previousMoralityNumber) + 1;
             }
 
-
-            var newResponse = new Response
+            var newScene = new Scenario
             {
-                Title = $"{moralityToAdd}_{newMoralityNumber:D2}",
-                Responses = new ResponseType
+                Name = $"{moralityToAdd}_{newMoralityNumber:D2}",
+                Theme = "New theme",
+                Setup = new List<string>(),
+                Questions = new Questions
                 {
                     Good = "Insert good text here",
                     Neutral = "Insert neutral text here",
@@ -75,8 +76,28 @@ namespace JsonEditor
                 }
             };
 
-            SelectedResponse = newResponse;
-            Responses.Add(newResponse);
+
+            var response =
+                Responses.FirstOrDefault(r=> r.Title.ToLower() == newScene.Name.ToLower());
+
+            if (response == null)
+                response = new Response
+                {
+                    Title = $"{moralityToAdd}_{newMoralityNumber:D2}",
+                    Responses = new ResponseType
+                    {
+                        Good = "Insert good text here",
+                        Neutral = "Insert neutral text here",
+                        Bad = "Insert bad text here"
+                    }
+                };
+
+            SelectedScene = newScene;
+            SelectedResponse = response;
+
+            Scenarios.Add(newScene);
+            Responses.Add(response);
+
             ChangeMoralityOptions();
             SortResponses();
         }
