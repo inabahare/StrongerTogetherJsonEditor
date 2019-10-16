@@ -68,7 +68,7 @@ namespace JsonEditor
             {
                 Name = $"{moralityToAdd}_{newMoralityNumber:D2}",
                 Theme = "New theme",
-                Setup = new List<string>(),
+                Setup = new ObservableCollection<string>(),
                 Questions = new Questions
                 {
                     Good = "Insert good text here",
@@ -118,7 +118,7 @@ namespace JsonEditor
         {
             var newEvaluation = new DisplayText
             {
-                Scenes = Scenarios.ToList(),
+                Scenes = new ObservableCollection<Scenario>(Scenarios),
                 Responses = Responses.ToList()
             };
 

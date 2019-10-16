@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -11,7 +12,7 @@ namespace JsonEditor
 {
     public class DisplayText
     {
-        public List<Scenario> Scenes { get; set; }
+        public ObservableCollection<Scenario> Scenes { get; set; }
         public List<Response> Responses { get; set; }
     }
 
@@ -19,7 +20,7 @@ namespace JsonEditor
     {
         public string Name { get; set; }
         public string Theme { get; set; }
-        public List<string> Setup { get; set; }
+        public ObservableCollection<string> Setup { get; set; }
         public Questions Questions { get; set; }
     }
 
