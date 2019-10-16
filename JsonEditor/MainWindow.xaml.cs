@@ -47,8 +47,8 @@ namespace JsonEditor
             int newMoralityNumber = 1; // Set it to one in case there aren't any
 
             var previousChoice =
-                Responses
-                    .Where(r => r.Title.Contains(moralityToAdd))
+                Scenarios
+                    .Where(scenario => scenario.Name.Contains(moralityToAdd))
                     .ToList();
             
 
@@ -56,9 +56,10 @@ namespace JsonEditor
             if (previousChoice.Count() != 0)
             {
                 var previousMoralityNumber =
-                    previousChoice.Select(r => r.Title)
-                                  .Last()
-                                  .Remove(0, moralityToAdd.Length + 1); // + 1 to remove the underscore as well
+                    previousChoice
+                        .Select(scenario=> scenario.Name)
+                        .Last()
+                        .Remove(0, moralityToAdd.Length + 1); // + 1 to remove the underscore as well
 
                 newMoralityNumber = int.Parse(previousMoralityNumber) + 1;
             }
