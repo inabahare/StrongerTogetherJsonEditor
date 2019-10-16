@@ -11,14 +11,16 @@ namespace JsonEditor
         ObservableCollection<Scenario> Scenarios { get; set; }
         ObservableCollection<Response> Responses { get; set; }
 
-        private ObservableCollection<string> _setupText;
+        private ObservableCollection<string> _setupText = new ObservableCollection<string>();
 
         ObservableCollection<string> SetupText
         {
             get => _setupText;
             set
             {
-                _setupText = value;
+                _setupText.Clear();
+                foreach (var s in value)
+                    _setupText.Add(s);
                 OnPropertyChanged(nameof(SetupText));
             }
         }
