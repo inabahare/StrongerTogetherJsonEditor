@@ -11,20 +11,6 @@ namespace JsonEditor
         ObservableCollection<Scenario> Scenarios { get; set; }
         ObservableCollection<Response> Responses { get; set; }
 
-        private ObservableCollection<string> _setupText = new ObservableCollection<string>();
-
-        ObservableCollection<string> SetupText
-        {
-            get => _setupText;
-            set
-            {
-                _setupText.Clear();
-                foreach (var s in value)
-                    _setupText.Add(s);
-                OnPropertyChanged(nameof(SetupText));
-            }
-        }
-
         Response _selectedResponse;
         Scenario _selectedScene;
 
@@ -55,7 +41,8 @@ namespace JsonEditor
 
                 _selectedScene = value;
 
-                SetupText = value.Setup;
+                SetupText.ItemsSource = value.Setup;
+
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
                 ChangeMoralityOptions();

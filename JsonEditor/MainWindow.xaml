@@ -55,10 +55,10 @@
                         Text="{Binding Path=SelectedScene.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
-            <ItemsControl ItemsSource="{Binding Path=SetupText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ItemsControl x:Name="SetupText" ItemsSource="{Binding Path=SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBox Text="{Binding}"/>
+                        <TextBox Text="{Binding Path=.}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
