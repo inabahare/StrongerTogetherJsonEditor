@@ -11,11 +11,26 @@ namespace JsonEditor
         ObservableCollection<Scenario> Scenarios { get; set; }
         ObservableCollection<Response> Responses { get; set; }
 
+        ObservableCollection<string> _setupData;
+
         Response _selectedResponse;
         Scenario _selectedScene;
 
         ResponseType _responseTypes;
 
+
+        public ObservableCollection<string> SetupData
+        {
+            get => _setupData;
+            set
+            {
+                if (_setupData == value)
+                    return;
+
+                _setupData = value;
+                OnPropertyChanged(nameof(SetupData));
+            }
+        }
         public Response SelectedResponse
         {
             get => _selectedResponse;
@@ -24,7 +39,7 @@ namespace JsonEditor
                 if (_selectedResponse == value)
                     return;
                 _selectedResponse = value;
-
+                
                 ChangeMoralityOptions();
                 Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedResponse));
@@ -41,7 +56,7 @@ namespace JsonEditor
 
                 _selectedScene = value;
 
-                SetupText.ItemsSource = value.Setup;
+                SetupData = value.Setup;
 
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 

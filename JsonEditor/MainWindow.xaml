@@ -62,7 +62,8 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
+            
+            <!--EVALUIATION PAGE STUFF--> 
             <TextBlock Margin="0 20 0 0" FontSize="14" FontWeight="Bold">Evaluation responses</TextBlock>
             <Grid>
                 <Grid.ColumnDefinitions>
