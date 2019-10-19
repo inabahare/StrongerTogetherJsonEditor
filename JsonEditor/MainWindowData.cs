@@ -39,7 +39,7 @@ namespace JsonEditor
                 if (_selectedResponse == value)
                     return;
                 _selectedResponse = value;
-                
+
                 ChangeMoralityOptions();
                 Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedResponse));
@@ -56,6 +56,7 @@ namespace JsonEditor
 
                 _selectedScene = value;
 
+                // SetupText.ItemsSource = value.Setup;
                 SetupData = value.Setup;
 
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
