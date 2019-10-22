@@ -21,7 +21,7 @@ namespace JsonEditor
         public string Name { get; set; }
         public string Theme { get; set; }
 
-        public ObservableCollection<string> Setup { get; set; }
+        public ObservableCollection<ObservableString> Setup { get; set; }
         public Questions Questions { get; set; }
     }
 

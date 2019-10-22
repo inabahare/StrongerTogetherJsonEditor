@@ -57,7 +57,6 @@ namespace JsonEditor
                 _selectedScene = value;
 
                 // SetupText.ItemsSource = value.Setup;
-                SetupData = value.Setup;
 
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 

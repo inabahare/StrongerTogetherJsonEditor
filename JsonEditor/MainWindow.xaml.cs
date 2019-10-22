@@ -68,7 +68,7 @@ namespace JsonEditor
             {
                 Name = $"{moralityToAdd}_{newMoralityNumber:D2}",
                 Theme = "New theme",
-                Setup = new ObservableCollection<string>(),
+                Setup = new ObservableCollection<ObservableString>(),
                 Questions = new Questions
                 {
                     Good = "Insert good text here",
