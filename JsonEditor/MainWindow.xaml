@@ -81,21 +81,21 @@
                 <StackPanel Grid.Column="0">
                     <Label FontSize="14" FontWeight="Bold">Good</Label>
                     <TextBox Grid.Column="0" Height="50px" TextWrapping="Wrap"
-                             Text="{Binding Path=SelectedQuestions.Good.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedScene.Questions.Good.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--NEUTRAL-->
                 <StackPanel Grid.Column="1">
                     <Label FontSize="14" FontWeight="Bold">Neutral</Label>
                     <TextBox Grid.Column="1" Height="50px" TextWrapping="Wrap"
-                             Text="{Binding Path=SelectedQuestions.Neutral.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedScene.Questions.Neutral.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--BAD-->
                 <StackPanel Grid.Column="2">
                     <Label FontSize="14" FontWeight="Bold">Bad</Label>
                     <TextBox Height="50px" TextWrapping="Wrap"
-                             Text="{Binding Path=SelectedQuestions.Bad.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedScene.Questions.Bad.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
 
@@ -113,21 +113,21 @@
                 <StackPanel Grid.Column="0">
                     <Label FontSize="14" FontWeight="Bold">Good</Label>
                     <TextBox Grid.Column="0" Height="50px" TextWrapping="Wrap"
-                         Text="{Binding Path=GoodOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Path=SelectedResponse.Responses.Good.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--NEUTRAL-->
                 <StackPanel Grid.Column="1">
                     <Label FontSize="14" FontWeight="Bold">Neutral</Label>
                     <TextBox Grid.Column="1" Height="50px" TextWrapping="Wrap"
-                             Text="{Binding Path=NeutralOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedResponse.Responses.Neutral.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--BAD-->
                 <StackPanel Grid.Column="2">
                     <Label FontSize="14" FontWeight="Bold">Bad</Label>
                     <TextBox Height="50px" TextWrapping="Wrap"
-                             Text="{Binding Path=BadOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedResponse.Responses.Bad.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
 

@@ -40,14 +40,8 @@ namespace JsonEditor
 
     public class ResponseType
     {
-        public string Good { get; set; }
-        public string Bad { get; set; }
-        public string Neutral { get; set; }
+        public ObservableString Good { get; set; }
+        public ObservableString Bad { get; set; }
+        public ObservableString Neutral { get; set; }
     }
-
-    //public class ResponsesType
-    //{
-    //    public string Name { get; set; }
-    //    public string Text { get; set; }
-    //}
 }

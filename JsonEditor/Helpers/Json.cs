@@ -44,7 +44,7 @@ namespace JsonEditor.Helpers
             
             var newPath = $"{JsonPath}.backup.{DateTime.Now.ToString("yyyyMMddHHmm")}";
             File.Copy(JsonPath, newPath);
-            File.WriteAllText(JsonPath, text);
+            File.WriteAllText(JsonPath, text); // TODO: Convert the DTO's to a format where I don't get "TheList"
             MessageBox.Show("File saved");
         }
     }

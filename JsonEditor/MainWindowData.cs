@@ -41,7 +41,6 @@ namespace JsonEditor
                     return;
                 _selectedResponse = value;
 
-                ChangeMoralityOptions();
                 Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedResponse));
             }
@@ -60,7 +59,6 @@ namespace JsonEditor
 
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
-                ChangeMoralityOptions();
                 Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedScene));
             }
@@ -85,36 +83,6 @@ namespace JsonEditor
             {
                 _selectedQuestios = value;
                 OnPropertyChanged(nameof(SelectedQuestions));
-            }
-        }
-
-        public string GoodOption
-        {
-            get => _selectedResponse?.Responses?.Good;
-            set
-            {
-                _selectedResponse.Responses.Good = value;
-                OnPropertyChanged(nameof(GoodOption));
-            }
-        }
-
-        public string NeutralOption
-        {
-            get => _selectedResponse?.Responses?.Neutral;
-            set
-            {
-                _selectedResponse.Responses.Neutral= value;
-                OnPropertyChanged(nameof(NeutralOption));
-            }
-        }
-
-        public string BadOption
-        {
-            get => _selectedResponse?.Responses?.Bad;
-            set
-            {
-                _selectedResponse.Responses.Bad = value;
-                OnPropertyChanged(nameof(BadOption));
             }
         }
 

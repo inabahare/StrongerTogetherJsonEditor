@@ -24,17 +24,6 @@ namespace JsonEditor
             SelectedResponse = evaluations.Responses.First(response => response.Title.ToLower() == SelectedScene.Name.ToLower());
 
             Sections.ItemsSource = Scenarios;
-            ChangeMoralityOptions();
-        }
-
-        void ChangeMoralityOptions()
-        {
-            if (SelectedResponse == null)
-                return; // I have no idea why I need this
-
-            GoodOption = SelectedResponse.Responses.Good;
-            NeutralOption = SelectedResponse.Responses.Neutral;
-            BadOption = SelectedResponse.Responses.Bad;
         }
 
         void AddNewMorality(object sender, EventArgs e)
@@ -99,7 +88,6 @@ namespace JsonEditor
             Scenarios.Add(newScene);
             Responses.Add(response);
 
-            ChangeMoralityOptions();
             SortResponses();
         }
 
