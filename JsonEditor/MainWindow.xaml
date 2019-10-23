@@ -39,7 +39,8 @@
         </StackPanel>
 
         <!--RIGHT-->
-        <StackPanel Grid.Column="1" Height="500" Margin="0,0,0,210">
+        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+            <!--TITLE-->
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="14" FontWeight="Bold" Width="52">Title:</TextBlock>
                 <TextBox x:Name="Title" 
@@ -48,6 +49,7 @@
                          Text="{Binding Path=SelectedScene.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
             </StackPanel>
 
+            <!--THEME--> 
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="14" FontWeight="Bold" Width="52">Theme:</TextBlock>
                 <TextBox x:Name="Theme"
@@ -55,6 +57,7 @@
                         Text="{Binding Path=SelectedScene.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
+            <!--SETUP TEXT-->
             <ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -71,18 +74,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
+                <!--GOOD-->
                 <StackPanel Grid.Column="0">
                     <Label FontSize="14" FontWeight="Bold">Good</Label>
                     <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
                          Text="{Binding Path=GoodOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
+                <!--NEUTRAL-->
                 <StackPanel Grid.Column="1">
                     <Label FontSize="14" FontWeight="Bold">Neutral</Label>
                     <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
                              Text="{Binding Path=NeutralOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
+                <!--BAD-->
                 <StackPanel Grid.Column="2">
                     <Label FontSize="14" FontWeight="Bold">Bad</Label>
                     <TextBox Height="100px" TextWrapping="Wrap"
