@@ -18,7 +18,6 @@ namespace JsonEditor
             Responses = new ObservableCollection<Response>(evaluations.Responses);
             Scenarios = new ObservableCollection<Scenario>(evaluations.Scenes);
 
-            
             // Sections.SelectionChanged += ChangeDialog;
             SelectedScene = evaluations.Scenes.First();
             SelectedResponse = evaluations.Responses.First(response => response.Title.ToLower() == SelectedScene.Name.ToLower());
@@ -63,7 +62,6 @@ namespace JsonEditor
                 response = Response.CreateEmpty(moralityToAdd, newMoralityNumber);
 
             SelectedScene = newScene;
-            SelectedResponse = response;
 
             Scenarios.Add(newScene);
             Responses.Add(response);
@@ -76,20 +74,22 @@ namespace JsonEditor
             var indexOfSceneToRemove =
                 Scenarios.IndexOf(SelectedScene);
 
-                var newScene = 
-                    SelectedScene == Scenarios.Last() ? // If last element removed
-                        Scenarios[indexOfSceneToRemove - 1] : // Pick the previous 
-                        Scenarios[indexOfSceneToRemove + 1];  // Pick the next
+            var newScene = 
+                SelectedScene == Scenarios.Last() ? // If last element to be removed
+                    Scenarios[indexOfSceneToRemove - 1] : // Pick the previous 
+                    Scenarios[indexOfSceneToRemove + 1];  // Pick the next
 
             Scenarios.Remove(SelectedScene);
 
             SelectedScene = newScene;
         }
+
         void SortResponses()
         {
-            var ordered = (from r in Responses
-                           orderby r.Title
-                           select r).ToList();
+            var ordered = 
+                (from r in Responses
+                 orderby r.Title
+                 select r).ToList();
 
             Responses.Clear();
             foreach (var r in ordered)
