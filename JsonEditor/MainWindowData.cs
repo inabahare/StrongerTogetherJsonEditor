@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Documents;
 using JsonEditor.Annotations;
 
 namespace JsonEditor
@@ -35,6 +36,9 @@ namespace JsonEditor
             get => _selectedScene;
             set
             {
+                if (value == null)
+                    return;
+
                 if (_selectedScene == value)
                     return;
 
@@ -47,6 +51,7 @@ namespace JsonEditor
                 OnPropertyChanged(nameof(SelectedScene));
             }
         }
+
 
         public Questions SelectedQuestions
         {

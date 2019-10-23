@@ -36,7 +36,20 @@
                 <ComboBoxItem Name="InclusionAndDiversity">Inclusion and Diversity</ComboBoxItem>
             </ComboBox>
 
-            <Button Click="AddNewMorality">+</Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Margin="2 0 2 0"
+                        Click="AddNewMorality">+</Button>
+
+                <Button Grid.Column="1"
+                        Margin="2 0 2 0"
+                        Click="RemoveMorality">-</Button>
+            </Grid>
         </StackPanel>
 
         <!--RIGHT-->

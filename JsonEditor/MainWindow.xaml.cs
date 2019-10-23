@@ -71,6 +71,20 @@ namespace JsonEditor
             SortResponses();
         }
 
+        void RemoveMorality(object sender, EventArgs e)
+        {
+            var indexOfSceneToRemove =
+                Scenarios.IndexOf(SelectedScene);
+
+                var newScene = 
+                    SelectedScene == Scenarios.Last() ? // If last element removed
+                        Scenarios[indexOfSceneToRemove - 1] : // Pick the previous 
+                        Scenarios[indexOfSceneToRemove + 1];  // Pick the next
+
+            Scenarios.Remove(SelectedScene);
+
+            SelectedScene = newScene;
+        }
         void SortResponses()
         {
             var ordered = (from r in Responses
