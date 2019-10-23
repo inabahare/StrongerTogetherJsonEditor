@@ -27,9 +27,9 @@ namespace JsonEditor
 
     public class Questions
     {
-        public string Good { get; set; }
-        public string Bad { get; set; }
-        public string Neutral { get; set; }
+        public ObservableString Good { get; set; }
+        public ObservableString Bad { get; set; }
+        public ObservableString Neutral { get; set; }
     }
 
     public class Response

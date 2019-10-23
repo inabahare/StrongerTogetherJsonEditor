@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JsonEditor" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="534" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -14,6 +14,7 @@
     
         <!--LEFT--> 
         <StackPanel Grid.Column="0">
+            <TextBlock>Scenarios:</TextBlock>
             <ListBox x:Name="Sections"
                      Height="300"
                      SelectedItem="{Binding SelectedScene, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -39,7 +40,7 @@
         </StackPanel>
 
         <!--RIGHT-->
-        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+        <StackPanel Grid.Column="1" Margin="10,0,10,0">
             <!--TITLE-->
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="14" FontWeight="Bold" Width="52">Title:</TextBlock>
@@ -65,9 +66,10 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            
-            <!--EVALUIATION PAGE STUFF--> 
-            <TextBlock Margin="0 20 0 0" FontSize="14" FontWeight="Bold">Evaluation responses</TextBlock>
+
+            <TextBlock Margin="0 20 0 0" 
+                       FontSize="14" 
+                       FontWeight="Bold">Answers</TextBlock>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -78,21 +80,53 @@
                 <!--GOOD-->
                 <StackPanel Grid.Column="0">
                     <Label FontSize="14" FontWeight="Bold">Good</Label>
-                    <TextBox Grid.Column="0" Height="100px" TextWrapping="Wrap"
+                    <TextBox Grid.Column="0" Height="50px" TextWrapping="Wrap"
+                             Text="{Binding Path=SelectedQuestions.Good.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <!--NEUTRAL-->
+                <StackPanel Grid.Column="1">
+                    <Label FontSize="14" FontWeight="Bold">Neutral</Label>
+                    <TextBox Grid.Column="1" Height="50px" TextWrapping="Wrap"
+                             Text="{Binding Path=SelectedQuestions.Neutral.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <!--BAD-->
+                <StackPanel Grid.Column="2">
+                    <Label FontSize="14" FontWeight="Bold">Bad</Label>
+                    <TextBox Height="50px" TextWrapping="Wrap"
+                             Text="{Binding Path=SelectedQuestions.Bad.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </Grid>
+
+
+            <!--EVALUIATION PAGE STUFF--> 
+            <TextBlock Margin="0 20 0 0" FontSize="14" FontWeight="Bold">Explanations</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--GOOD-->
+                <StackPanel Grid.Column="0">
+                    <Label FontSize="14" FontWeight="Bold">Good</Label>
+                    <TextBox Grid.Column="0" Height="50px" TextWrapping="Wrap"
                          Text="{Binding Path=GoodOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--NEUTRAL-->
                 <StackPanel Grid.Column="1">
                     <Label FontSize="14" FontWeight="Bold">Neutral</Label>
-                    <TextBox Grid.Column="1" Height="100px" TextWrapping="Wrap"
+                    <TextBox Grid.Column="1" Height="50px" TextWrapping="Wrap"
                              Text="{Binding Path=NeutralOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--BAD-->
                 <StackPanel Grid.Column="2">
                     <Label FontSize="14" FontWeight="Bold">Bad</Label>
-                    <TextBox Height="100px" TextWrapping="Wrap"
+                    <TextBox Height="50px" TextWrapping="Wrap"
                              Text="{Binding Path=BadOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
@@ -102,6 +136,6 @@
         <!-- TODO: A better button position -->
         <Button Grid.Column="1"
                 Click="Save"
-                Margin="634,348,34,33">Save</Button>
+                Margin="658,454,10,10">Save</Button>
     </Grid>
 </Window>

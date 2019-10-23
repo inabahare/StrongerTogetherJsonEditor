@@ -17,6 +17,7 @@ namespace JsonEditor
         Scenario _selectedScene;
 
         ResponseType _responseTypes;
+        private Questions _selectedQuestios;
 
 
         public ObservableCollection<string> SetupData
@@ -55,8 +56,7 @@ namespace JsonEditor
                     return;
 
                 _selectedScene = value;
-
-                // SetupText.ItemsSource = value.Setup;
+                SelectedQuestions = value.Questions;
 
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
@@ -75,6 +75,16 @@ namespace JsonEditor
                     return;
                 _responseTypes = value;
                 OnPropertyChanged(nameof(ResponseTypes));
+            }
+        }
+
+        public Questions SelectedQuestions
+        {
+            get => _selectedQuestios;
+            set
+            {
+                _selectedQuestios = value;
+                OnPropertyChanged(nameof(SelectedQuestions));
             }
         }
 
