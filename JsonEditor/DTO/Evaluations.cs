@@ -43,6 +43,18 @@ namespace JsonEditor
     {
         public string Title { get; set; }
         public ResponseType Responses { get; set; }
+
+        public static Response CreateEmpty(string scenario, int number) =>
+            new Response
+            {
+                Title = $"{scenario}_{number:D2}",
+                Responses = new ResponseType
+                {
+                    Good = "Insert good text here",
+                    Neutral = "Insert neutral text here",
+                    Bad = "Insert bad text here"
+                }
+            };
     }
 
     public class ResponseType

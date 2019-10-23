@@ -60,16 +60,8 @@ namespace JsonEditor
                 Responses.FirstOrDefault(r=> r.Title.ToLower() == newScene.Name.ToLower());
 
             if (response == null)
-                response = new Response
-                {
-                    Title = $"{moralityToAdd}_{newMoralityNumber:D2}",
-                    Responses = new ResponseType
-                    {
-                        Good = "Insert good text here",
-                        Neutral = "Insert neutral text here",
-                        Bad = "Insert bad text here"
-                    }
-                };
+                response = 
+                    Response.CreateEmpty(moralityToAdd, newMoralityNumber);
 
             SelectedScene = newScene;
             SelectedResponse = response;
