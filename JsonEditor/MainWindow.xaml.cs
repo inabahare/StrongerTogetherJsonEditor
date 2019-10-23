@@ -112,5 +112,15 @@ namespace JsonEditor
 
             Json.SaveToFile(newEvaluation);
         }
+
+        void AddNewIntro(object sender, EventArgs e)
+        {
+            var newString = new ObservableString
+            {
+                TheString = "Change me!"
+            };
+
+            SelectedScene.Setup.Add(newString);
+        }
     }
 }

@@ -57,15 +57,26 @@
                          Width="200"
                         Text="{Binding Path=SelectedScene.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
+            
+            <!--INTRODUCTION TEXT-->
+            <StackPanel Width="300"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="0 20 0 0" 
+                           FontSize="14" 
+                           FontWeight="Bold">Intro text</TextBlock>
+                <ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Margin="0 5 0 0"
+                                Text="{Binding Path=TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-            <!--SETUP TEXT-->
-            <ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBox Text="{Binding Path=TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                <Button Width="50" 
+                        HorizontalAlignment="Left"
+                        Click="AddNewIntro">+</Button>
+            </StackPanel>
 
             <TextBlock Margin="0 20 0 0" 
                        FontSize="14" 
@@ -101,7 +112,9 @@
 
 
             <!--EVALUIATION PAGE STUFF--> 
-            <TextBlock Margin="0 20 0 0" FontSize="14" FontWeight="Bold">Explanations</TextBlock>
+            <TextBlock Margin="0 20 0 0" 
+                       FontSize="14" 
+                       FontWeight="Bold">Explanations</TextBlock>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
