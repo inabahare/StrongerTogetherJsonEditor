@@ -77,14 +77,19 @@
                 <TextBlock Margin="0 20 0 0" 
                            FontSize="14" 
                            FontWeight="Bold">Intro text</TextBlock>
-                <ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                <TextBox Margin="0 5 0 0" 
+                         AcceptsReturn="True"
+                         Text="{Binding Source=IntroText, Path=TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!--<ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <TextBox Margin="0 5 0 0"  AcceptsReturn="True"
                                      Text="{Binding Path=TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                </ItemsControl>-->
 
                 <Button Width="50" 
                         HorizontalAlignment="Left"
