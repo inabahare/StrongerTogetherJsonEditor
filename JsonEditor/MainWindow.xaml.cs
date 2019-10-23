@@ -28,7 +28,7 @@ namespace JsonEditor
 
         void AddNewMorality(object sender, EventArgs e)
         {
-            var moralityToAdd = ((ComboBoxItem)ToAdd.SelectedItem).Name as string;
+            var moralityToAdd = ((ComboBoxItem)ToAdd.SelectedItem).Name;
 
             if (moralityToAdd == null)
                 return;
@@ -53,19 +53,8 @@ namespace JsonEditor
                 newMoralityNumber = int.Parse(previousMoralityNumber) + 1;
             }
 
-            var newScene = new Scenario
-            {
-                Name = $"{moralityToAdd}_{newMoralityNumber:D2}",
-                Theme = "New theme",
-                Setup = new ObservableCollection<ObservableString>(),
-                Questions = new Questions
-                {
-                    Good = "Insert good text here",
-                    Neutral = "Insert neutral text here",
-                    Bad = "Insert bad text here"
-                }
-            };
-
+            var newScene =
+                Scenario.CreateEmpty(moralityToAdd, newMoralityNumber);
 
             var response =
                 Responses.FirstOrDefault(r=> r.Title.ToLower() == newScene.Name.ToLower());

@@ -16,6 +16,20 @@ namespace JsonEditor
 
         public ObservableCollection<ObservableString> Setup { get; set; }
         public Questions Questions { get; set; }
+
+        public static Scenario CreateEmpty(string scenario, int number) =>
+            new Scenario
+            {
+                Name = $"{scenario}_{number:D2}",
+                Theme = "New theme",
+                Setup = new ObservableCollection<ObservableString>(),
+                Questions = new Questions
+                {
+                    Good = "Insert good text here",
+                    Neutral = "Insert neutral text here",
+                    Bad = "Insert bad text here"
+                }
+            };
     }
 
     public class Questions
