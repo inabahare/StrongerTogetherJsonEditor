@@ -82,15 +82,6 @@
                          AcceptsReturn="True"
                          Text="{Binding Path=IntroText.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <!--<ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Margin="0 5 0 0"  AcceptsReturn="True"
-                                     Text="{Binding Path=TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
-
                 <Button Width="50" 
                         HorizontalAlignment="Left"
                         Click="AddNewIntro">+</Button>

@@ -20,8 +20,6 @@ namespace JsonEditor
         int _introTextIndex;
         ObservableString _introText;
 
-        //ObservableString IntroText { get; set; }
-
         public ObservableString IntroText 
         { 
             get => _introText;
