@@ -17,7 +17,7 @@ namespace JsonEditor
 
         Questions _selectedQuestios;
 
-        int _introTextIndex;
+        int _introTextIndex = -1;
         ObservableString _introText;
 
         public ObservableString IntroText 
@@ -33,25 +33,25 @@ namespace JsonEditor
             } 
         }
 
-        //int IntroTextIndex
-        //{
-        //    get => _introTextIndex;
-        //    set
-        //    {
-        //        if (_introTextIndex == value)
-        //            return;
+        int IntroTextIndex // TODO: Fix this!
+        {
+            get => _introTextIndex;
+            set
+            {
+                if (_introTextIndex == value)
+                    return;
 
-        //        // Prevent stack over and underflow
-        //        if (value == SelectedScene.Setup.Count)
-        //            value--;
-        //        else if (value == -1)
-        //            value++;
+                // Prevent stack over and underflow
+                if (value == SelectedScene.Setup.Count)
+                    value--;
+                else if (value == -1)
+                    value++;
 
-        //        _introTextIndex = value;
-        //        IntroText = SelectedScene.Setup[value];
-        //        OnPropertyChanged(nameof(IntroTextIndex));
-        //    }
-        //}
+                _introTextIndex = value;
+                IntroText = SelectedScene.Setup[value];
+                OnPropertyChanged(nameof(IntroTextIndex));
+            }
+        }
 
 
         public Response SelectedResponse
@@ -81,6 +81,7 @@ namespace JsonEditor
                 _selectedScene = value;
                 SelectedQuestions = value.Questions;
                 IntroText = value.Setup.First();
+                IntroTextIndex = 0;
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
                 Sections.UpdateLayout();

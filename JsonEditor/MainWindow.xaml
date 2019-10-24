@@ -74,17 +74,42 @@
             <!--INTRODUCTION TEXT-->
             <StackPanel Width="300"
                         HorizontalAlignment="Left">
-                <TextBlock Margin="0 20 0 0" 
-                           FontSize="14" 
-                           FontWeight="Bold">Intro text</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0 20 0 0" 
+                               FontSize="14" 
+                               FontWeight="Bold">Intro text</TextBlock>
+                    <TextBlock Margin="5 20 0 0" 
+                               FontSize="14" 
+                               FontWeight="Bold"
+                               Text="{Binding Path=IntroTextIndex, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
 
                 <TextBox Margin="0 5 0 0" 
                          AcceptsReturn="True"
                          Text="{Binding Path=IntroText.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <Button Width="50" 
-                        HorizontalAlignment="Left"
-                        Click="AddNewIntro">+</Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Width="50" 
+                            HorizontalAlignment="Left"
+                            Click="AddNewIntro">+</Button>
+
+                    <Button Grid.Column="1"
+                            Width="50" 
+                            HorizontalAlignment="Right"
+                            Click="AddNewIntro">←</Button>
+
+                    <Button Grid.Column="2"
+                            Width="50" 
+                            HorizontalAlignment="Right"
+                            Click="AddNewIntro">→</Button>
+                </Grid>
             </StackPanel>
 
             <TextBlock Margin="0 20 0 0" 
