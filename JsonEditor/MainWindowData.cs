@@ -22,7 +22,7 @@ namespace JsonEditor
 
         //ObservableString IntroText { get; set; }
 
-        ObservableString IntroText 
+        public ObservableString IntroText 
         { 
             get => _introText;
             set 

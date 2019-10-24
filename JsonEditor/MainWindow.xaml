@@ -80,7 +80,7 @@
 
                 <TextBox Margin="0 5 0 0" 
                          AcceptsReturn="True"
-                         Text="{Binding Source=IntroText, Path=TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Path=IntroText.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!--<ItemsControl x:Name="SetupText" ItemsSource="{Binding SelectedScene.Setup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
