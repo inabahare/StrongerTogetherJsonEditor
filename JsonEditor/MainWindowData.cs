@@ -17,6 +17,45 @@ namespace JsonEditor
 
         Questions _selectedQuestios;
 
+        int _introTextIndex;
+        ObservableString _introText;
+
+        //ObservableString IntroText { get; set; }
+
+        ObservableString IntroText 
+        { 
+            get => _introText;
+            set 
+            {
+                if (_introText == value)
+                    return;
+
+                _introText = value;
+                OnPropertyChanged(nameof(IntroText));
+            } 
+        }
+
+        //int IntroTextIndex
+        //{
+        //    get => _introTextIndex;
+        //    set
+        //    {
+        //        if (_introTextIndex == value)
+        //            return;
+
+        //        // Prevent stack over and underflow
+        //        if (value == SelectedScene.Setup.Count)
+        //            value--;
+        //        else if (value == -1)
+        //            value++;
+
+        //        _introTextIndex = value;
+        //        IntroText = SelectedScene.Setup[value];
+        //        OnPropertyChanged(nameof(IntroTextIndex));
+        //    }
+        //}
+
+
         public Response SelectedResponse
         {
             get => _selectedResponse;
@@ -30,7 +69,6 @@ namespace JsonEditor
                 OnPropertyChanged(nameof(SelectedResponse));
             }
         }
-
         public Scenario SelectedScene
         {
             get => _selectedScene;
@@ -44,15 +82,13 @@ namespace JsonEditor
 
                 _selectedScene = value;
                 SelectedQuestions = value.Questions;
-
+                IntroText = value.Setup.First();
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
                 Sections.UpdateLayout();
                 OnPropertyChanged(nameof(SelectedScene));
             }
         }
-
-
         public Questions SelectedQuestions
         {
             get => _selectedQuestios;
@@ -63,6 +99,8 @@ namespace JsonEditor
             }
         }
 
+
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
