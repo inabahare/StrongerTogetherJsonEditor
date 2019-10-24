@@ -74,14 +74,14 @@ namespace JsonEditor
             var indexOfSceneToRemove =
                 Scenarios.IndexOf(SelectedScene);
 
-            var newScene = 
+            var nextScene = 
                 SelectedScene == Scenarios.Last() ? // If last element to be removed
                     Scenarios[indexOfSceneToRemove - 1] : // Pick the previous 
                     Scenarios[indexOfSceneToRemove + 1];  // Pick the next
 
             Scenarios.Remove(SelectedScene);
 
-            SelectedScene = newScene;
+            SelectedScene = nextScene;
         }
 
         void SortResponses()
@@ -92,6 +92,7 @@ namespace JsonEditor
                  select r).ToList();
 
             Responses.Clear();
+            // Foreach since there are no AddRange on ObservableCollections
             foreach (var r in ordered)
                 Responses.Add(r);
         }

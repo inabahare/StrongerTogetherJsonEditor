@@ -81,7 +81,7 @@
                     <TextBlock Margin="5 20 0 0" 
                                FontSize="14" 
                                FontWeight="Bold"
-                               Text="{Binding IntroTextIndex, RelativeSource={RelativeSource TemplatedParent}}"/>
+                               Text="{Binding Path=IntroTextIndex, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <TextBox Margin="0,5,0,0" 
