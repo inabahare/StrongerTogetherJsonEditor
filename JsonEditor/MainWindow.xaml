@@ -11,8 +11,8 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
-    
-        <!--LEFT--> 
+
+        <!--LEFT-->
         <StackPanel Grid.Column="0">
             <TextBlock>Scenarios:</TextBlock>
             <ListBox x:Name="Sections"
@@ -63,16 +63,16 @@
                          Text="{Binding Path=SelectedScene.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="Bold"/>
             </StackPanel>
 
-            <!--THEME--> 
+            <!--THEME-->
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="14" FontWeight="Bold" Width="52">Theme:</TextBlock>
                 <TextBox x:Name="Theme"
                          Width="200"
                         Text="{Binding Path=SelectedScene.Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            
+
             <!--INTRODUCTION TEXT-->
-            <StackPanel Width="300"
+            <StackPanel Width="362"
                         HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="0 20 0 0" 
@@ -84,9 +84,9 @@
                                Text="{Binding Path=IntroTextIndex, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
-                <TextBox Margin="0 5 0 0" 
+                <TextBox Margin="0,5,0,0" 
                          AcceptsReturn="True"
-                         Text="{Binding Path=IntroText.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding Path=IntroText.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="70"/>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -103,12 +103,12 @@
                     <Button Grid.Column="1"
                             Width="50" 
                             HorizontalAlignment="Right"
-                            Click="AddNewIntro">←</Button>
+                            Click="PreviousIntro">←</Button>
 
                     <Button Grid.Column="2"
                             Width="50" 
                             HorizontalAlignment="Right"
-                            Click="AddNewIntro">→</Button>
+                            Click="NextIntro">→</Button>
                 </Grid>
             </StackPanel>
 
@@ -145,7 +145,7 @@
             </Grid>
 
 
-            <!--EVALUIATION PAGE STUFF--> 
+            <!--EVALUIATION PAGE STUFF-->
             <TextBlock Margin="0 20 0 0" 
                        FontSize="14" 
                        FontWeight="Bold">Explanations</TextBlock>
@@ -179,7 +179,7 @@
             </Grid>
 
         </StackPanel>
-        
+
         <!-- TODO: A better button position -->
         <Button Grid.Column="1"
                 Click="Save"
