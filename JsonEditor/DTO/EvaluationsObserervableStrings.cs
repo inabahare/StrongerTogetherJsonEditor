@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using JsonEditor.OutputDTO;
 
 namespace JsonEditor
 {
@@ -7,6 +9,15 @@ namespace JsonEditor
     {
         public ObservableCollection<Scenario> Scenes { get; set; }
         public List<Response> Responses { get; set; }
+
+        public static explicit operator DisplayTextString(DisplayText displayText)
+        {
+            return new DisplayTextString
+            {
+                Scenes = displayText.Scenes.Select(scene => (ScenarioString)scene).ToList(),
+                Responses = displayText.Responses.Select(scene => (ResponseString)scene).ToList()
+            };
+        }
     }
 
     public class Scenario
@@ -30,6 +41,17 @@ namespace JsonEditor
                     Bad = "Insert bad text here"
                 }
             };
+        
+        public static explicit operator ScenarioString(Scenario scenario)
+        {
+            return new ScenarioString
+            {
+                Name = scenario.Name,
+                Theme = scenario.Theme,
+                Setup = scenario.Setup.Select(setup => (string)setup).ToList(),
+                Questions = scenario.Questions
+            };
+        }
     }
 
     public class Questions
@@ -37,6 +59,16 @@ namespace JsonEditor
         public ObservableString Good { get; set; }
         public ObservableString Bad { get; set; }
         public ObservableString Neutral { get; set; }
+
+        public static explicit operator QuestionsString(Questions displayText)
+        {
+            return new QuestionsString
+            {
+                Good = displayText.Good,
+                Neutral = displayText.Neutral,
+                Bad = displayText.Neutral
+            };
+        }
     }
 
     public class Response
@@ -55,6 +87,15 @@ namespace JsonEditor
                     Bad = "Insert bad text here"
                 }
             };
+
+        public static explicit operator ResponseString(Response response)
+        {
+            return new ResponseString
+            {
+                Title = response.Title,
+                Responses = (ResponseTypeString)response.Responses
+            };
+        }
     }
 
     public class ResponseType
@@ -62,5 +103,15 @@ namespace JsonEditor
         public ObservableString Good { get; set; }
         public ObservableString Bad { get; set; }
         public ObservableString Neutral { get; set; }
+
+        public static explicit operator ResponseTypeString(ResponseType displayText)
+        {
+            return new ResponseTypeString
+            {
+                Good = displayText.Good,
+                Neutral = displayText.Neutral,
+                Bad = displayText.Neutral
+            };
+        }
     }
 }

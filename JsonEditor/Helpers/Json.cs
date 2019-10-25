@@ -40,7 +40,12 @@ namespace JsonEditor.Helpers
 
         public static void SaveToFile(DisplayText evaluations)
         {
-            var text = JsonConvert.SerializeObject(evaluations, Formatting.Indented);
+
+            var displayTextWithoutObservables =
+                (DisplayTextString)evaluations;
+
+            var text = 
+                JsonConvert.SerializeObject(evaluations, Formatting.Indented);
             
             var newPath = $"{JsonPath}.backup.{DateTime.Now.ToString("yyyyMMddHHmm")}";
             File.Copy(JsonPath, newPath);

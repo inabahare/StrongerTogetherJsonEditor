@@ -116,8 +116,11 @@ namespace JsonEditor
             };
 
             SelectedScene.Setup.Add(newString);
-            var IntroTextIndex = 
+            IntroTextIndex = 
                 SelectedScene.Setup.IndexOf(newString);
+            
+            IntroTextCount = 
+                SelectedScene.Setup.Count();
         }
 
         void NextIntro(object sender, EventArgs e)

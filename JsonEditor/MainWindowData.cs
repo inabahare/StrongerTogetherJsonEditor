@@ -58,10 +58,8 @@ namespace JsonEditor
 
         int IntroTextCount
         {
-            set
-            {
+            set =>
                 IntroCount.Text = value.ToString();
-            }
         }
 
 
