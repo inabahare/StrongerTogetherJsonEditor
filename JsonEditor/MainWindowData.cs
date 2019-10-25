@@ -47,11 +47,20 @@ namespace JsonEditor
                 else if (value == -1)
                     value++;
 
-                SelectedIntroIndex.Text = // I couldn't get two way binding to work here 
-                    value.ToString();     // so this is the fix
 
                 IntroText = SelectedScene.Setup[value];
                 _introTextIndex = value;
+
+                SelectedIntroIndex.Text =   // I couldn't get two way binding to work here 
+                    value.ToString(); // so this is the fix
+            }
+        }
+
+        int IntroTextCount
+        {
+            set
+            {
+                IntroCount.Text = value.ToString();
             }
         }
 
@@ -81,9 +90,12 @@ namespace JsonEditor
                     return;
 
                 _selectedScene = value;
+                
                 SelectedQuestions = value.Questions;
                 IntroText = value.Setup.First();
+                IntroTextCount = value.Setup.Count();
                 IntroTextIndex = 0;
+                
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
                 Sections.UpdateLayout();
