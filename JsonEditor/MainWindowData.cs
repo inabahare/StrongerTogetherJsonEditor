@@ -17,7 +17,7 @@ namespace JsonEditor
 
         Questions _selectedQuestios;
 
-        int? _introTextIndex = null;
+        int _introTextIndex;
         ObservableString _introText;
 
         public ObservableString IntroText 
@@ -33,7 +33,7 @@ namespace JsonEditor
             } 
         }
 
-        int? IntroTextIndex // TODO: Fix this!
+        int IntroTextIndex // TODO: Fix this!
         {
             get => _introTextIndex;
             set
@@ -47,9 +47,11 @@ namespace JsonEditor
                 else if (value == -1)
                     value++;
 
+                SelectedIntroIndex.Text = // I couldn't get two way binding to work here 
+                    value.ToString();     // so this is the fix
+
+                IntroText = SelectedScene.Setup[value];
                 _introTextIndex = value;
-                IntroText = SelectedScene.Setup[(int)value];
-                OnPropertyChanged(nameof(IntroTextIndex));
             }
         }
 
