@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using JsonEditor.OutputDTO;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -45,11 +46,13 @@ namespace JsonEditor.Helpers
                 (DisplayTextString)evaluations;
 
             var text = 
-                JsonConvert.SerializeObject(evaluations, Formatting.Indented);
+                JsonConvert.SerializeObject(displayTextWithoutObservables, Formatting.Indented);
             
-            var newPath = $"{JsonPath}.backup.{DateTime.Now.ToString("yyyyMMddHHmm")}";
+            var newPath = 
+                $"{JsonPath}.backup.{DateTime.Now.ToString("yyyyMMddHHmm")}";
+            
             File.Copy(JsonPath, newPath);
-            File.WriteAllText(JsonPath, text); // TODO: Convert the DTO's to a format where I don't get "TheList"
+            File.WriteAllText(JsonPath, text);
             MessageBox.Show("File saved");
         }
     }

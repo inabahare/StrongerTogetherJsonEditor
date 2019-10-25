@@ -48,8 +48,8 @@ namespace JsonEditor
             {
                 Name = scenario.Name,
                 Theme = scenario.Theme,
-                Setup = scenario.Setup.Select(setup => (string)setup).ToList(),
-                Questions = scenario.Questions
+                Setup = scenario.Setup.Select(setup => setup.TheString).ToList(),
+                Questions = (QuestionsString)scenario.Questions
             };
         }
     }
@@ -64,9 +64,9 @@ namespace JsonEditor
         {
             return new QuestionsString
             {
-                Good = displayText.Good,
-                Neutral = displayText.Neutral,
-                Bad = displayText.Neutral
+                Good = displayText.Good.TheString,
+                Neutral = displayText.Neutral.TheString,
+                Bad = displayText.Neutral.TheString
             };
         }
     }
@@ -108,9 +108,9 @@ namespace JsonEditor
         {
             return new ResponseTypeString
             {
-                Good = displayText.Good,
-                Neutral = displayText.Neutral,
-                Bad = displayText.Neutral
+                Good = displayText.Good.TheString,
+                Neutral = displayText.Neutral.TheString,
+                Bad = displayText.Neutral.TheString
             };
         }
     }

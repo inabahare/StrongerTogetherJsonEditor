@@ -19,7 +19,7 @@ namespace JsonEditor.OutputDTO
         public string Theme { get; set; }
 
         public List<string> Setup { get; set; }
-        public Questions Questions { get; set; }
+        public QuestionsString Questions { get; set; }
     }
 
     public class QuestionsString
