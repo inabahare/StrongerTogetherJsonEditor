@@ -17,7 +17,7 @@ namespace JsonEditor
 
         Questions _selectedQuestios;
 
-        int _introTextIndex;
+        int _introTextIndex = -1;
         ObservableString _introText;
 
         public ObservableString IntroText 
@@ -52,7 +52,7 @@ namespace JsonEditor
                 _introTextIndex = value;
 
                 SelectedIntroIndex.Text =   // I couldn't get two way binding to work here 
-                    value.ToString(); // so this is the fix
+                    (value + 1).ToString(); // so this is the fix
             }
         }
 
