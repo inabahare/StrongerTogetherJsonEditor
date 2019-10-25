@@ -15,7 +15,7 @@ namespace JsonEditor
         Response _selectedResponse;
         Scenario _selectedScene;
 
-        Questions _selectedQuestios;
+        Answers _selectedQuestios;
 
         int _introTextIndex = -1;
         ObservableString _introText;
@@ -89,7 +89,7 @@ namespace JsonEditor
 
                 _selectedScene = value;
                 
-                SelectedQuestions = value.Questions;
+                SelectedQuestions = value.Answers;
                 IntroText = value.Setup.First();
                 IntroTextCount = value.Setup.Count();
                 IntroTextIndex = 0;
@@ -100,7 +100,7 @@ namespace JsonEditor
                 OnPropertyChanged(nameof(SelectedScene));
             }
         }
-        public Questions SelectedQuestions
+        public Answers SelectedQuestions
         {
             get => _selectedQuestios;
             set

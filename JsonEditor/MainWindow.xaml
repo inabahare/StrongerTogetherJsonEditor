@@ -136,21 +136,21 @@
                 <StackPanel Grid.Column="0">
                     <Label FontSize="14" FontWeight="Bold">Good</Label>
                     <TextBox Height="50px" TextWrapping="Wrap" AcceptsReturn="True"
-                             Text="{Binding Path=SelectedScene.Questions.Good.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedScene.Answers.Good.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--NEUTRAL-->
                 <StackPanel Grid.Column="1">
                     <Label FontSize="14" FontWeight="Bold">Neutral</Label>
                     <TextBox Height="50px" TextWrapping="Wrap" AcceptsReturn="True"
-                             Text="{Binding Path=SelectedScene.Questions.Neutral.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedScene.Answers.Neutral.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <!--BAD-->
                 <StackPanel Grid.Column="2">
                     <Label FontSize="14" FontWeight="Bold">Bad</Label>
                     <TextBox Height="50px" TextWrapping="Wrap" AcceptsReturn="True"
-                             Text="{Binding Path=SelectedScene.Questions.Bad.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Path=SelectedScene.Answers.Bad.TheString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
 

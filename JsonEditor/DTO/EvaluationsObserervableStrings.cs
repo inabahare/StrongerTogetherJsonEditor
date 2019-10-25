@@ -26,7 +26,7 @@ namespace JsonEditor
         public string Theme { get; set; }
 
         public ObservableCollection<ObservableString> Setup { get; set; }
-        public Questions Questions { get; set; }
+        public Answers Answers { get; set; }
 
         public static Scenario CreateEmpty(string scenario, int number) =>
             new Scenario
@@ -34,7 +34,7 @@ namespace JsonEditor
                 Name = $"{scenario}_{number:D2}",
                 Theme = "New theme",
                 Setup = new ObservableCollection<ObservableString>(),
-                Questions = new Questions
+                Answers = new Answers
                 {
                     Good = "Insert good text here",
                     Neutral = "Insert neutral text here",
@@ -49,20 +49,20 @@ namespace JsonEditor
                 Name = scenario.Name,
                 Theme = scenario.Theme,
                 Setup = scenario.Setup.Select(setup => setup.TheString).ToList(),
-                Questions = (QuestionsString)scenario.Questions
+                Answers = (AnswersString)scenario.Answers
             };
         }
     }
 
-    public class Questions
+    public class Answers
     {
         public ObservableString Good { get; set; }
         public ObservableString Bad { get; set; }
         public ObservableString Neutral { get; set; }
 
-        public static explicit operator QuestionsString(Questions displayText)
+        public static explicit operator AnswersString(Answers displayText)
         {
-            return new QuestionsString
+            return new AnswersString
             {
                 Good = displayText.Good.TheString,
                 Neutral = displayText.Neutral.TheString,

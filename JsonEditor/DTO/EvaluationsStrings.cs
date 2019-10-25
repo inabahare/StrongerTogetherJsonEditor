@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace JsonEditor.OutputDTO
 {
@@ -19,10 +14,10 @@ namespace JsonEditor.OutputDTO
         public string Theme { get; set; }
 
         public List<string> Setup { get; set; }
-        public QuestionsString Questions { get; set; }
+        public AnswersString Answers { get; set; }
     }
 
-    public class QuestionsString
+    public class AnswersString
     {
         public string Good { get; set; }
         public string Bad { get; set; }
