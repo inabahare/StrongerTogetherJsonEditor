@@ -16,7 +16,7 @@ namespace JsonEditor.Helpers
         static string JsonPath { get; set; }
         const string JsonPathInUnityProject = "Assets/Resources/Languages/English.json"; // TODO: Make availible for other languages 
 
-        public static DisplayText LoadFromFile()
+        public static DisplayText LoadFromFile(string FileName)
         {
             var dlg = new OpenFileDialog
             {

@@ -7,8 +7,8 @@ namespace JsonEditor
         public MainWindow()
         {
             InitializeComponent();
-            var editor = new Editor();
-            Content.Content = (editor);
+            var languageSelectionPage = new LanguageSelection();
+            Content.Content = languageSelectionPage;
         }
     }
 }
