@@ -1,13 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using JsonEditor.Annotations;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows.Documents;
-using JsonEditor.Annotations;
 
-namespace JsonEditor
+namespace JsonEditor.Views
 {
-    public partial class MainWindow : INotifyPropertyChanged
+    public partial class Editor : INotifyPropertyChanged
     {
         ObservableCollection<Scenario> Scenarios { get; set; }
         ObservableCollection<Response> Responses { get; set; }
@@ -20,17 +19,17 @@ namespace JsonEditor
         int _introTextIndex = -1;
         ObservableString _introText;
 
-        public ObservableString IntroText 
-        { 
+        public ObservableString IntroText
+        {
             get => _introText;
-            set 
+            set
             {
                 if (_introText == value)
                     return;
 
                 _introText = value;
                 OnPropertyChanged(nameof(IntroText));
-            } 
+            }
         }
 
         int IntroTextIndex // TODO: Fix this!
@@ -88,12 +87,12 @@ namespace JsonEditor
                     return;
 
                 _selectedScene = value;
-                
+
                 SelectedQuestions = value.Answers;
                 IntroText = value.Setup.First();
                 IntroTextCount = value.Setup.Count();
                 IntroTextIndex = 0;
-                
+
                 SelectedResponse = Responses.FirstOrDefault(response => response.Title.ToLower() == value.Name.ToLower());
 
                 Sections.UpdateLayout();
@@ -111,7 +110,7 @@ namespace JsonEditor
         }
 
 
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
