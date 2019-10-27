@@ -113,7 +113,7 @@ namespace JsonEditor.Views
                 Responses = Responses.ToList()
             };
 
-            // Json.SaveToFile(newEvaluation);
+            DataManager.SaveToFile(Language, newEvaluation);
         }
 
         void AddNewIntro(object sender, EventArgs e)
