@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using JsonEditor.Helpers;
@@ -19,6 +20,14 @@ namespace JsonEditor.Views
 
             Languages = languages;
             LanguageContainer.ItemsSource = Languages;
+        }
+
+        public void LoadExistingLanguage(object sender, EventArgs e)
+        {
+            var selectedLanguage =
+                LanguageContainer?.SelectedItem as string;
+
+            GoToEditingScreen(selectedLanguage);
         }
 
         public void AddLanguageAndGoToEditingScreen(object sender, EventArgs e)

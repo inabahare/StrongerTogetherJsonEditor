@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using JsonEditor.OutputDTO;
 using Microsoft.Win32;
@@ -39,7 +40,8 @@ namespace JsonEditor.Helpers
 
             var jsonFilesWithoutFullPath = 
                 files.Where(file => Regex.Match(file, "^*.json$").Success)
-                    .Select(file => file.Replace($"{FullPathToJsonFiles}\\", ""))
+                     .Select(RemovePath) 
+                     .Select(RemoveJsonExtensionFromName)
                      .ToList();
 
             return jsonFilesWithoutFullPath;
@@ -74,5 +76,11 @@ namespace JsonEditor.Helpers
             var evaluations = JsonConvert.DeserializeObject<DisplayText>(text);
             return evaluations;
         }
+
+        string RemovePath(string file) =>
+            file.Replace($"{FullPathToJsonFiles}\\", "");
+
+        string RemoveJsonExtensionFromName(string file) =>
+            file.Replace($".json", "");
     }
 }
