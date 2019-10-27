@@ -76,7 +76,6 @@
     </Compile>
     <Compile Include="DTO\EvaluationsObserervableStrings.cs" />
     <Compile Include="DTO\EvaluationsStrings.cs" />
-    <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\ObservableString.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
