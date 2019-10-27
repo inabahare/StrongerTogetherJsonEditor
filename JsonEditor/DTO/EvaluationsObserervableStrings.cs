@@ -48,7 +48,10 @@ namespace JsonEditor
             {
                 Name = $"{scenario}_{number:D2}",
                 Theme = "New theme",
-                Setup = new ObservableCollection<ObservableString>(),
+                Setup = new ObservableCollection<ObservableString>
+                {
+                    "Add setup text here"
+                },
                 Answers = new Answers
                 {
                     Good = "Insert good text here",
