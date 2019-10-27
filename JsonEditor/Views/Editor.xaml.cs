@@ -19,14 +19,16 @@ namespace JsonEditor.Views
             InitializeComponent();
 
             Language = language;
-            PageContainer.Title = language;
+            Title.Text = language;
 
-            //var evaluations = Json.LoadFromFile();
-            //Responses = new ObservableCollection<Response>(evaluations.Responses);
-            //Scenarios = new ObservableCollection<Scenario>(evaluations.Scenes);
+            var evaluations = 
+                DataManager.LoadFromFile(language);
+            
+            Responses = new ObservableCollection<Response>(evaluations.Responses);
+            Scenarios = new ObservableCollection<Scenario>(evaluations.Scenes);
 
-            //SelectedScene = evaluations.Scenes.First();
-            //SelectedResponse = evaluations.Responses.First(response => response.Title.ToLower() == SelectedScene.Name.ToLower());
+            SelectedScene = evaluations.Scenes.First();
+            SelectedResponse = evaluations.Responses.First(response => response.Title.ToLower() == SelectedScene.Name.ToLower());
 
             Sections.ItemsSource = Scenarios;
         }

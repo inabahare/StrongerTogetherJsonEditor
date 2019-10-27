@@ -65,5 +65,14 @@ namespace JsonEditor.Helpers
 
             File.WriteAllText(newFilePath, text);
         }
+
+        public static DisplayText LoadFromFile(string language)
+        {
+            var jsonPath =
+                Path.Combine(FullPathToJsonFiles, $"{language}.json");
+            var text = File.ReadAllText(jsonPath);
+            var evaluations = JsonConvert.DeserializeObject<DisplayText>(text);
+            return evaluations;
+        }
     }
 }

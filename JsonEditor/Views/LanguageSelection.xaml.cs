@@ -53,7 +53,7 @@ namespace JsonEditor.Views
             var navigationService = 
                 NavigationService.GetNavigationService(this);
 
-            navigationService.Navigate(new Editor(language));
+            navigationService?.Navigate(new Editor(language));
         }
     }
 }
