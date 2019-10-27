@@ -6,5 +6,5 @@
         xmlns:local="clr-namespace:JsonEditor" 
         mc:Ignorable="d"
         Title="MainWindow" Height="534" Width="1000">
-    <Frame x:Name="Content" />
+    <Frame x:Name="Content" NavigationUIVisibility="Hidden"/>
 </Window>
