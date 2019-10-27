@@ -10,6 +10,21 @@ namespace JsonEditor
         public ObservableCollection<Scenario> Scenes { get; set; }
         public List<Response> Responses { get; set; }
 
+        public static DisplayText CreateEmpty()
+        {
+            return new DisplayText
+            {
+                Scenes = new ObservableCollection<Scenario>
+                {
+                    Scenario.CreateEmpty("Morality", 1)
+                },
+                Responses = new List<Response>
+                {
+                    Response.CreateEmpty("Morality", 1)
+                }
+            };
+        }
+
         public static explicit operator DisplayTextString(DisplayText displayText)
         {
             return new DisplayTextString

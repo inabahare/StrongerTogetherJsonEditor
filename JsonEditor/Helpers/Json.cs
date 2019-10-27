@@ -13,33 +13,7 @@ namespace JsonEditor.Helpers
 {
     static class Json
     {
-        static string JsonPath { get; set; }
-        const string JsonPathInUnityProject = "Assets/Resources/Languages/English.json"; // TODO: Make availible for other languages 
-
-        public static DisplayText LoadFromFile(string FileName)
-        {
-            var dlg = new OpenFileDialog
-            {
-                DefaultExt = ".json",
-                Filter = "Stronger Together Project|*.sln"
-            };
-
-            dlg.ShowDialog();
-            JsonPath = GetPathOfEvaluationJson(dlg.FileName, dlg.SafeFileName);
-
-            var text = File.ReadAllText(JsonPath);
-            var evaluations = JsonConvert.DeserializeObject<DisplayText>(text);
-            return evaluations;
-        }
-
-        static string GetPathOfEvaluationJson(string fullPath, string slnName)
-        {
-            var pathWithoutSln = fullPath.Replace(slnName, "");
-            var pathToJson = Path.Combine(pathWithoutSln, JsonPathInUnityProject);
-            return pathToJson;
-        }
-
-        public static void SaveToFile(DisplayText evaluations)
+        public static void SaveToFile(string path, DisplayText evaluations)
         {
 
             var displayTextWithoutObservables =
@@ -48,12 +22,7 @@ namespace JsonEditor.Helpers
             var text = 
                 JsonConvert.SerializeObject(displayTextWithoutObservables, Formatting.Indented);
             
-            var newPath = 
-                $"{JsonPath}.backup.{DateTime.Now.ToString("yyyyMMddHHmm")}";
-            
-            File.Copy(JsonPath, newPath);
-            File.WriteAllText(JsonPath, text);
-            MessageBox.Show("File saved");
+            File.WriteAllText(path, text);
         }
     }
 }

@@ -11,10 +11,15 @@ namespace JsonEditor.Views
     /// </summary>
     public partial class Editor : Page
     {
-        public Editor()
+        private string Language { get; set; }
+
+        public Editor(string language)
         {
             DataContext = this;
             InitializeComponent();
+
+            Language = language;
+            PageContainer.Title = language;
 
             //var evaluations = Json.LoadFromFile();
             //Responses = new ObservableCollection<Response>(evaluations.Responses);
@@ -106,7 +111,7 @@ namespace JsonEditor.Views
                 Responses = Responses.ToList()
             };
 
-            Json.SaveToFile(newEvaluation);
+            // Json.SaveToFile(newEvaluation);
         }
 
         void AddNewIntro(object sender, EventArgs e)

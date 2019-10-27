@@ -22,8 +22,8 @@
 
         <StackPanel Margin="10 0 10 0">
             <TextBlock>Or add a new one</TextBlock>
-            <TextBox></TextBox>
-            <Button>Add language</Button>
+            <TextBox x:Name="NewLanguage"></TextBox>
+            <Button Click="AddLanguageAndGoToEditingScreen">Add language</Button>
         </StackPanel>
     </StackPanel>
 </Page>

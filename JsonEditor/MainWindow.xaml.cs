@@ -1,4 +1,5 @@
-﻿using JsonEditor.Views;
+﻿using JsonEditor.Helpers;
+using JsonEditor.Views;
 
 namespace JsonEditor
 {
@@ -7,7 +8,15 @@ namespace JsonEditor
         public MainWindow()
         {
             InitializeComponent();
-            var languageSelectionPage = new LanguageSelection();
+
+
+            var strongerTogetherFinder = new DataManager();
+
+            var languages =
+                strongerTogetherFinder.GetLanguagesThatAlreadyExist();
+
+            var languageSelectionPage = new LanguageSelection(languages);
+
             Content.Content = languageSelectionPage;
         }
     }
