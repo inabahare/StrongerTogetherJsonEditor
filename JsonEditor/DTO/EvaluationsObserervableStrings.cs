@@ -41,7 +41,7 @@ namespace JsonEditor
         public string Theme { get; set; }
 
         public ObservableCollection<ObservableString> Setup { get; set; }
-        public Answers Answers { get; set; }
+        public Answers Questions { get; set; }
 
         public static Scenario CreateEmpty(string scenario, int number) =>
             new Scenario
@@ -52,7 +52,7 @@ namespace JsonEditor
                 {
                     "Add setup text here"
                 },
-                Answers = new Answers
+                Questions = new Answers
                 {
                     Good = "Insert good text here",
                     Neutral = "Insert neutral text here",
@@ -67,7 +67,7 @@ namespace JsonEditor
                 Name = scenario.Name,
                 Theme = scenario.Theme,
                 Setup = scenario.Setup.Select(setup => setup.TheString).ToList(),
-                Answers = (AnswersString)scenario.Answers
+                Answers = (AnswersString)scenario.Questions
             };
         }
     }

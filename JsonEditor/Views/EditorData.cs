@@ -88,7 +88,7 @@ namespace JsonEditor.Views
 
                 _selectedScene = value;
 
-                SelectedQuestions = value.Answers;
+                SelectedQuestions = value.Questions;
                 IntroText = value.Setup.First();
                 IntroTextCount = value.Setup.Count();
                 IntroTextIndex = 0;
